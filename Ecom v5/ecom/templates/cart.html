@@ -1,0 +1,27 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block body_block %}
+
+
+<div class="container cartCon">
+    {% for i in k %}
+
+    <div class="row cartRow">
+        <div class="col-lg-4 justify-content-center text-center"><img src="{{i.pro.product_img.url}}" width="100px" alt=""></div>
+        <div class="col-lg-4">
+            <h4><b>{{i.pro.product_name}}</b></h4>
+            <h5>{{i.pro.product_price}}</h5>
+            <button class="cartBtn"><a href="{% url 'removeitem' i.pro.id %}">Remove</a></button>
+        </div>
+        <div class="col-lg-4 d-flex flex-column justify-content-between">
+            <div><a href="{% url 'increment' i.pro.id %}">+</a></div>
+            <div>{{i.quantity}}</div>
+            <div><a href="{% url 'decrement' i.pro.id %}">-</a></div>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block body_block %}
+<div class="logMain">
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-8"style="height: 100vh;display: grid;place-items: center;">
+            <img src="{% static 'image/logImg.png' %}" style="width: 50%;height: 50%;" alt="none">
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 logIn">
+            <div class="formAround">
+            <form method="POST">
+                {% csrf_token %}
+                <label>
+                    Welcome Back!!
+                </label>
+                <input type="text" name="name" class="logInp1" placeholder="Username"><br>
+                <input type="password" name="password" class="logInp2" placeholder="Password"><br>
+                <input type="submit" value="Login" class="logInp3"><br>
+                <a class="logFor" href="{% url 'password_reset' %}">forgot password</a> <br>
+                Or <br><a href="{% url 'signup' %}">Sign up</a>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
