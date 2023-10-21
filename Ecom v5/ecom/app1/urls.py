@@ -13,6 +13,10 @@ urlpatterns = [
     path('removeitem/<int:uid>/',views.removeitem,name='removeitem'),
     path('increment/<int:uid>/',views.increment,name='increment'),
     path('decrement/<int:uid>/',views.decrement,name='decrement'),
+    path('pro_view/<int:uid>/',views.pro_view,name='pro_view'),
+    path('allProducts/',views.allProducts,name='allProducts'),
+    path('search/',views.search,name='search'),
+    path('catfilter/<int:uid>/',views.catfilter,name='catfilter'),
 ]
 if(settings.DEBUG):
     urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Luckiest+Guy&family=Poppins&display=swap');
 *{
     margin: 0;
     padding:0;
@@ -8,12 +7,10 @@ body{
     font-family: 'Poppins', sans-serif;
     overflow-x: hidden;
 }
-header{
-    display: flex;
-    justify-content: space-evenly;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    animation: hdrFade 4s;
+.navclass{
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 .h_main{
     background-color: rgba(200,200,200,255);
@@ -56,16 +53,6 @@ header{
 @keyframes coroBtnFade{
     0%{
         transform: translateY(30px);
-        opacity: 0;
-    }
-    100%{
-        transform: translateY(0px);
-        opacity: 1;
-    }
-}
-@keyframes hdrFade{
-    0%{
-        transform: translateY(-30px);
         opacity: 0;
     }
     100%{
@@ -208,9 +195,19 @@ header{
     margin-top: 2vh;
 }
 .favMainRow{
+    transform: translateY(100px);
+    opacity: 0;
     padding: 6% 0%;
 }
+.active{
+    transform: translateY(0);
+    opacity: 1;
+    transition: 1s ease-in-out;
+}
 .fav .spn{
+    color: rgba(200,200,200,255);
+}
+.review .spn{
     color: rgba(200,200,200,255);
 }
 .conFoot{
@@ -236,51 +233,162 @@ header{
     transition: 0.3s ease-in-out;
     transform-origin: left;
 }
+.addbtn span{
+    position: relative;
+    z-index: 1;
+}
 .addbtn:hover{
     text-decoration: none;
     transition: all 0.5s ease;
     color: white;
-    z-index: 0;
 }
-.addbtn::after{
+.addbtn::before{
     content: "";
     position: absolute;
-    top: 0;
-    right: -10px;
-    width: 10%;
-    background: black;
+    width: 0;
     height: 100%;
-    z-index: -1;
-    transition: 0.3s ease-in-out;
-    transform-origin: left;
+    position: absolute;
+    left: auto;
+    top: 0;
+    right: 0;
+    transition: all 0.5s ease;
+    background-color: black;
 }
-.addbtn:hover::after{
-    width: 150%;
-    left: -10px;
-    transform-origin: right;
+.addbtn:hover::before{
+    width: 100%;
+    left: 0;
+    right: auto;
 }
 
 #crd1{
     border: none;
 }
+.s{
+    overflow: hidden;
+    height: 17rem;
+}
 #crd1 img{
-    height: 22rem;
-    background: rgba(241,241,241,255);
+    transition: 2s;
+}
+#crd1 img:hover{
+    transform: scale(1.5);
+    transition: 2s;
+}
+#crd1 h5{
+    font-size: 16px;
 }
 .card-body{
-    height: 9rem;
+    height: 6rem;
+    padding-left: 0%;
+}
+.card-body a{
+    text-decoration: none;
+    color: black;
 }
 .proRow{
     margin: 0% 3%;
+    padding: 5% 0%;
 }
 .cartCon{
     min-height: 100vh;
-    padding: 6% 0%;
+    padding: 2% 0%;
 }
-.cartRow{
-    padding-bottom: 2%;
+.cartRow h3{
+    padding: 1% 0%;
 }
-.cartBtn{
-    padding: 1% 4%;
-    border: 1px solid black;
+.cartRow1{
+    border-bottom: 1px solid rgba(200,200,200,255);
+    border-top: 1px solid rgba(200,200,200,255);
+    padding: 1% 0%;
+}
+.cartRow2{
+    border-bottom: 1px solid rgba(200,200,200,255);
+    padding: 2% 0%;
+}
+.cartRow h5{
+    font-size: 16px;
+}
+.cat1{
+    background-image: url('../image/allpro.jpg');
+    width: 100%;
+    height: 10rem;
+    background-size: contain;
+    color: white;
+    transition: 1s;
+}
+.cat1:hover{
+    background-image: url('../image/allpro.jpg');
+    transform: scale(1.1);
+    .catlink{
+        text-decoration: underline;
+        opacity: 1;
+        transition: 1s;
+    }
+    
+}
+.cat2{
+    width: 100%;
+    height: 10rem;
+    background-size: contain;
+    color: rgb(255, 255, 255);
+    transition: .5s;
+}
+.cat2:hover{
+    transform: scale(1.1);
+    transition: 1s;
+    .catlink{
+        text-decoration: underline;
+        opacity: 1;
+        transition: 1s;
+    }
+    
+}
+.catimg{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: -1;
+}
+.catlink:hover{
+    color: #fff;
+    }
+.catlink{
+    color: rgb(228, 227, 227);
+    text-decoration: none;
+    font-weight: 600;
+    opacity: 0;
+}
+.cat h4{
+    font-size: 120%;
+}
+.cat .catlink{
+    position: absolute;
+    top: 56%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.cat h4{
+    position: absolute;
+    top: 44%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+/* review section */
+.review{
+    background-color: rgb(243, 243, 243);
+    height: 100vh;
+}
+.revImg{
+    border-radius: 50%;
+    height: 10rem;
+    width: 10rem;
+}
+.revOut>*{
+    padding: 30px 0;
+}
+.revInner>*{
+    padding: 30px 0;
+}
+.uni{
+    background-color: rgb(173, 173, 173);
 }

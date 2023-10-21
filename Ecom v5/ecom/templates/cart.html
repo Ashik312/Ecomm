@@ -2,26 +2,38 @@
 {% load static %}
 {% block body_block %}
 
-
 <div class="container cartCon">
-    {% for i in k %}
-
     <div class="row cartRow">
-        <div class="col-lg-4 justify-content-center text-center"><img src="{{i.pro.product_img.url}}" width="100px" alt=""></div>
-        <div class="col-lg-4">
-            <h4><b>{{i.pro.product_name}}</b></h4>
-            <h5>{{i.pro.product_price}}</h5>
-            <button class="cartBtn"><a href="{% url 'removeitem' i.pro.id %}">Remove</a></button>
+        <div class="col-lg-12">
+            <h3>Shopping Cart</h3>
+            <div class="row cartRow1 justify-content-end">
+                <div class="col-lg-2 col-sm-2"><h5>Product</h5></div>
+                <div class="col-lg-2 col-sm-2"><h5>Price</h5></div>
+                <div class="col-lg-2 col-sm-2"><h5>Quantity</h5></div>
+                <div class="col-lg-2 col-sm-2"><h5>Subtotal</h5></div>
+            </div>
+            {% if k %}
+            {% for i in k %}
+            <div class="row cartRow2 d-flex align-items-center">
+                    <div class="col-lg-2 col-sm-2 "><h5><a href="{% url 'removeitem' i.pro.id %}">*</a></h5></div>
+                    <div class="col-lg-2 col-sm-2"><img src="{{i.pro.product_img.url}}" width="100" alt=""></div>
+                    <div class="col-lg-2 col-sm-2 "><h5>{{i.pro.product_name}}</h5></div>
+                    <div class="col-lg-2 col-sm-2 "><h5>{{i.pro.product_price}}</h5></div>
+                    <div class="col-lg-2 col-sm-2 d-flex justify-content-around"><a href="{% url 'decrement' i.pro.id %}">-</a><h5>{{i.quantity}}</h5><a href="{% url 'increment' i.pro.id %}">+</a></div>
+                    <div class="col-lg-2 col-sm-2 "><h5>{{i.total_price}}</h5></div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="row cartRow2 d-flex align-items-center justify-content-center">
+                <h5>Empty Cart</h5>
+            </div>
+            {% endif %}
+            <div class="row cartRow2 justify-content-end">
+                <div class="col-lg-2 col-sm-2"><h5>Grand Total : {{j.grandtotal}}</h5></div>
+            </div>
         </div>
-        <div class="col-lg-4 d-flex flex-column justify-content-between">
-            <div><a href="{% url 'increment' i.pro.id %}">+</a></div>
-            <div>{{i.quantity}}</div>
-            <div><a href="{% url 'decrement' i.pro.id %}">-</a></div>
-        </div>
+        
     </div>
-
-    {% endfor %}
 </div>
-
 
 {% endblock %}
