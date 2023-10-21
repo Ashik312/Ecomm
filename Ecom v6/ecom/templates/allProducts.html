@@ -1,0 +1,49 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block body_block %}
+
+<div class="container">
+<div class="row">
+    <div class="col">
+        <h3>{{c}} Results Found</h3>
+        <div class="row proRow">
+
+            {% for i in k %}
+            <div class="col-lg-3">
+                <div class="card" id="crd1" style="width: 13rem;">
+                    <div class="s"><img src="{{ i.product_img.url }}" class="card-img-top" class="crdimg" alt="..."></div>
+                    <div class="card-body">
+                      <h5 class="card-title">
+                        <b><a href="{% url 'pro_view' i.id %}">{{i.product_name}}</a></b></h5>
+                      <h5 class="card-title">Rs.{{i.product_price}}</h5>
+                    </div>
+                    <a href="{% url 'addcart' i.id %}" class="addbtn"><span>ADD TO CART</span></a>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+        <div class="row justify-content-center">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    {% if k.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{k.previous_page_number}}">Previous</a></li>
+                    {% endif %}
+
+                    
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+
+
+                    {% if k.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{k.next_page_number}}">Next</a></li>
+                    <li class="page-item"><a class="page-link" href="">Last</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}

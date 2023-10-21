@@ -1,0 +1,231 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/ecom_styles.css' %}">
+
+</head>
+<body>
+    <!-- Header start -->
+
+    <nav class="navbar navbar-expand-lg navbar-light navclass">
+            <a class="navbar-brand" href="#">FashZ</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto">
+                
+                <li class="nav-item active">
+                  <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'viewcart' %}">Cart</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                </li>
+                {% else %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>
+                {% endif %}
+              </ul>
+              <form class="form-inline my-2 my-lg-0" action="{% url 'search' %}" method="POST">
+                {% csrf_token %}
+                <input class="form-control mr-sm-2" name="searchQuery" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
+            </div>
+          </nav>
+
+    <!-- Header end -->
+    {% block body_block %}
+    <!-- home main start -->
+    <div class="h_main">
+        
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6"><img class="mainCoro1"src="{% static 'image/mainCoro1.png' %}" alt="none"></div>
+            <!-- code optimization needed 1 -->
+            <div class="col-lg-6 col-md-6 col-sm-6 coro1div">
+                <div>
+                <h1 class="coro1hd">Ongoing Offers Upto 40%</h1>
+                <p class="coro1para">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus consequatur eius praesentium facere nisi at inventore laborum dolorem! Eum Consectetur unde ad nemo labore natus?</p>
+                <button class="coro1btn">SHOP NOW</button>
+                </div>
+            </div>
+            <!-- end 1 -->
+        </div>
+    </div>
+    <!-- home main end -->
+
+    <!-- category start -->
+    
+    <section class="container">
+        <div class="row d-flex justify-content-center favMainRow reveal">
+            <div class="col-lg-3 col-md-3">
+                <div class="cat1 cat">
+                    <h4>All Products</h4>
+                    <a href="{% url 'allProducts' %}" class="catlink">SHOP NOW</a>
+                </div>
+            </div>
+            {% for i in cat %}
+            <div class="col-lg-3 col-md-3 text-center">
+                <div class="cat2 cat">
+                    <img src="{{ i.cateimg.url }}" class="catimg">
+                    <h4>{{i.catename}}</h4>
+                    <a href="{% url 'catfilter' i.id %}" class="catlink">SHOP NOW</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section> 
+
+    <!-- category end -->
+
+    <!-- About start -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="aboutTxt">
+                <h2>About <span>Us</span></h2>
+                <p>We have wide range fashion items at affordable price , which delivars through out india with our lightning fast delivary.Our 24x7 Customer service facility solves all your problems within seconds...</p>
+                <button class="aboutBtn">KNOW MORE</button>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <img class="aboutImg" src="{% static 'image/aboutImg.jpg' %}">
+            </div>
+        </div>
+    </div>
+    <!-- About end -->
+
+    <!-- reviews -->
+
+    <div class="review text-center">
+        <div class="container revOut">
+        <h2>Customer <span class="spn">Reviews</span></h2>
+        <div class="row">
+            <div class="col revInner">
+                <div class="row justify-content-center">
+                    <div class="col-lg-3">
+                        <img src="{% static 'image/fav1one.jpg' %}" width="100%" alt="" class="revImg">
+                    </div>
+                    <div class="col-lg-6 text-lg-left">
+                        <h5>MIKE PERRY</h5>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci numquam vitae laborum dolorum earum debitis libero. Eligendi, aut aliquam accusamus harum ipsam eaque molestiae unde. Temporibus amet non, earum repudiandae nisi deleniti soluta.</p>
+                        <a href="">READ MORE</a>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-3">
+                        <img src="{% static 'image/fav1one.jpg' %}" width="100%" alt="" class="revImg">
+                    </div>
+                    <div class="col-lg-6 text-lg-left">
+                        <h5>MIKE PERRY</h5>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci numquam vitae laborum dolorum earum debitis libero. Eligendi, aut aliquam accusamus harum ipsam eaque molestiae unde. Temporibus amet non, earum repudiandae nisi deleniti soluta.</p>
+                        <a href="">READ MORE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- reviews end -->
+
+    <!-- Favourite start -->
+        <div class="fav" style="text-align: center;padding: 6%;">
+            <h2>Favourite <span class="spn">Products</span></h2>
+            <div class="row favMainRow">
+                <div class="col-lg-5 col-md-5 col-sm-5">
+                    <div class="fav1">
+                        
+                    </div>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-7">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="fav2">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row favSubRow">
+                        <div class="col-lg-5 col-md-5 col-sm-5">
+                            <div class="fav3">
+                                <img src="{% static 'image/fav3.png' %}" width="100%" height="100%" alt="">
+                            </div>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-sm-7">
+                            <div class="fav4">
+                                <img src="{% static 'image/fav4.png' %}" width="90%" height="100%" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- Favourite end -->
+    {% endblock %}
+    <!-- footer start -->
+    <div class="conFoot">
+            <div class="">
+                <h2>FashZ</h2>
+                <p>
+                    Address : 60-49 Road 11378<br>
+                    New York <br>
+                    Phone : +54 867 6787 <br>
+                    Email : logo@gmail.com
+                </p>
+            </div>
+            <div class="footInfo">
+                <h3>Information</h3>
+                <a href="">About Us</a><br>
+                <a href="">Services</a><br>
+                <a href="">Contact Us</a><br>
+                <a href="">Shop</a>
+            </div>
+            <div class="">
+                <h3>Follow Us On</h3>
+                <div class="row">
+                    <div class="col-lg-2"><img class="soc1" src="{% static 'image/icons8-facebook-32.png' %}" alt=""></div>
+                    <div class="col-lg-2"><img class="soc2" src="{% static 'image/icons8-instagram-32.png' %}" alt=""></div>
+                    <div class="col-lg-2"><img class="soc3" src="{% static 'image/icons8-linkedin-32.png' %}" alt=""></div>
+                    <div class="col-lg-2"><img class="soc4" src="{% static 'image/icons8-youtube-32.png' %}" alt=""></div>
+                </div>
+            </div>
+    </div>
+    <!-- footer end -->
+
+    <script type="text/javascript">
+        window.addEventListener('scroll',reveal);
+
+        function reveal(){
+            var reveals = document.querySelectorAll('.reveal');
+            for(var i=0;i<reveals.length;i++){
+                var windowheight = window.innerHeight;
+                var revealtop = reveals[i].getBoundingClientRect().top;
+                var revealpoint = 150;
+
+                if (revealtop < windowheight-revealpoint){
+                    reveals[i].classList.add('active')
+                }
+                else{
+                    reveals[i].classList.remove('active')
+                }
+            }
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+</body>
+</html>
